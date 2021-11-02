@@ -9,8 +9,9 @@ loginButton.addEventListener("click", (e) => {
     const password = loginForm.password.value;
 
     if (username === "Kent" && password === "Harris") {
-        alert("You have successfully logged in.");
-        // location.reload();
+        // alert("You have successfully logged in.");
+        window.location.replace("http://127.0.0.1:5501/homePage/home.html?")
+        
     } else {
         loginErrorMsg.style.opacity = 1;
     }

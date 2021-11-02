@@ -7,13 +7,13 @@ module.exports = {
 
     deletenewsletter: (req, res) => {
         // I think this is not doing what I actully want it to whitch is deleting old newsletters
-        let index = houses.findIndex(elem => elem.id === +req.params.id)
-        houses.splice(index,2)
+        let index = newsletter.findIndex(elem => elem.id === +req.params.id)
+        newsletter.splice(index,2)
         res.status(200).send(newsletter)
     },
 
     createnewsletter: (req, res) => {
-        const {addText, imageURL} = req.body
+        const {addText, addURL} = req.body
 
         let createnewsletter = {
             addText,

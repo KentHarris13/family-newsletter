@@ -3,10 +3,17 @@ const form = document.querySelector('form')
 
 const baseURL = `http://localhost:4200/api/newsletter`
 
+const newsletterCallback = ({data}) => displaynewsletter(data) 
+
 const getAllnewsletter = () => axios.get(baseURL).then(newsletterCallback).catch(errCallback)
 const createnewsletter = body => axios.post(baseURL, body).then(newsletterCallback).catch(errCallback)
 const deletenewsletter = id => axios.delete(`${baseURL}/${id}`).then(newsletterCallback).catch(errCallback)
 const updatenewsletter = (id, type) => axios.put(`${baseURL}/${id}`, {type}).then(newsletterCallback).catch(errCallback)
+
+
+const errCallback = (err) => {
+    console.log(err)
+}
 
 function submitHandler(e){
     e.preventDefault()
@@ -28,17 +35,12 @@ function submitHandler(e){
 
 
 
-function createnewsletterCard(newsletterThing) {
+function createnewsletterCard(newsletter) {
     const newsletterCard = document.createElement('div')
     newsletterCard.classList.add('newletter-card')
-
-    newsletterCard.innerHTML = `<img alt='newletter image' src=${newsletter.imageURL} class="newsletter-cover-image"/>
-    <p class="address">${newsletter.address}</p>
-    <div class="btns-container">
-        <button onclick="updatenewsletter(${newsletter.id}, 'minus')">-</button>
-        <p class="newsletter-price">$${newsletter.price}</p>
-        <button onclick="newsletter(${newsletter.id}, 'plus')">+</button>
-    </div>
+    // console.log(newsletter.imageURL)
+    newsletterCard.innerHTML = `<img alt='newletter image' src=${newsletter.addURL} class="newsletter-cover-image"/>
+    <p class="addText">${newsletter.addText}</p>
     <button onclick="deletenewsletter(${newsletter.id})">delete</button>
     `
 
@@ -47,6 +49,7 @@ function createnewsletterCard(newsletterThing) {
 }
 
 function displaynewsletter(arr) {
+    console.log(arr)
     newsletterContainer.innerHTML = ``
     for (let i = 0; i < arr.length; i++){
         createnewsletterCard(arr[i])

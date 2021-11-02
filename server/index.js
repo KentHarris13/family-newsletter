@@ -9,7 +9,7 @@ app.use(cors())
 
 const {
     getnewsletter,
-    deletenewletter,
+    deletenewsletter,
     createnewsletter,
     updatenewsletter
 } = require('./homeCtrl')
