@@ -1,6 +1,6 @@
 const { send } = require('process')
-const newsletter = require('./db.json')
-let globalId = 2
+const newsletter = []
+let globalId = 1
 
 module.exports = {
     getnewsletter: (req, res) => res.status(200).send(newsletter),
@@ -8,7 +8,7 @@ module.exports = {
     deletenewsletter: (req, res) => {
         // I think this is not doing what I actully want it to whitch is deleting old newsletters
         let index = newsletter.findIndex(elem => elem.id === +req.params.id)
-        newsletter.splice(index,2)
+        newsletter.splice(index,1)
         res.status(200).send(newsletter)
     },
 
